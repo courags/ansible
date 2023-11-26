@@ -6,8 +6,7 @@ ARG ANSIBLE_LINT
 ENV ANSIBLE_LINT ${ANSIBLE_LINT}
 ENV ANSIBLE_CORE ${ANSIBLE_CORE_VERSION}
 
-RUN CARGO_NET_GIT_FETCH_WITH_CLI=1 && \
-    apk --no-cache add \
+RUN apk --no-cache add \
         sudo \
         python3\
         py3-pip \
@@ -26,8 +25,8 @@ RUN CARGO_NET_GIT_FETCH_WITH_CLI=1 && \
         build-base && \
     pip install --upgrade pip wheel && \
     pip install --upgrade cryptography cffi && \
-    pip install ansible==${ANSIBLE_CORE} && \
-    pip install mitogen==0.2.10 ansible-lint==${ANSIBLE_LINT} jmespath && \
+    pip install ansible==2.9 && \
+    pip install mitogen==0.2.10 ansible-lint==6.22.0 jmespath && \
     pip install --upgrade pywinrm && \
     pip install pymysql && \
     apk del build-dependencies && \
